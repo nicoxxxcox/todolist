@@ -1,0 +1,9 @@
+.done-field[readonly]{
+    background: #ffffff;
+    border : none;
+    color : #cacaca ;
+}
+
+.add-field[autofocus]{
+    border : none;
+}
