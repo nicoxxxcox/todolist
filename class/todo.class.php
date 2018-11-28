@@ -58,7 +58,16 @@ class todo
 
 		$req->bindValue(':content', $content , PDO::PARAM_STR );
 		$req->bindValue(':id' , $id , PDO::PARAM_INT);
+		$req->execute();
 
+		header("location:index.php");
+	}
+
+	public function delEl($id)
+	{
+		$req = $this->_db->prepare('DELETE FROM todo WHERE id = :id');
+
+		$req->bindValue(':id', $id , PDO::PARAM_INT);
 		$req->execute();
 
 		header("location:index.php");

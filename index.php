@@ -46,7 +46,7 @@ include_once "functions.php";
                 <input type=\"text\" class=\"form-control\" name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
                 <div class=\"input-group-append\" id=\"button-addon4\">
                     <button class=\"btn btn-outline-primary\" name=\"edit\" type=\"submit\">Editer</button>
-                    <button class=\"btn btn-outline-danger\" name=\"submit\" type=\"submit\">Supprimer</button>
+                    <button class=\"btn btn-outline-danger\" name=\"delete\" type=\"submit\">Supprimer</button>
                 </div>
             </div>
                 </form>";
@@ -78,11 +78,11 @@ include_once "functions.php";
 		        echo "<form method=\"post\" action=\"functions.php\" class=\"mb-2\">
                 <div class=\"input-group \">
                
-
+                <input hidden type='text' name='id' value='". $Done['id'] ."'>
                 <input type=\"text\" class=\"form-control\" style=\"text-decoration: line-through\" value=\"". $Done['content']."\" readonly aria-label=\"Text input with checkbox\">
                 <div class=\"input-group-append\" id=\"button-addon4\">
                    
-                    <button class=\"btn btn-outline-danger\" name=\"submit\" type=\"submit\">Supprimer</button>
+                    <button class=\"btn btn-outline-danger\" name=\"delete\" type=\"submit\">Supprimer</button>
                 </div>
                 </div>
                 </form>";

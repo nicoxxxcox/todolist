@@ -28,3 +28,9 @@ if(isset($_POST['edit'])){
 	$content = $_POST['todo'];
 	$list->editEl( $content , $id);
 }
+
+//DELETE
+if(isset($_POST['delete'])){
+	$id = $_POST['id'];
+	$list->delEl($id);
+}
