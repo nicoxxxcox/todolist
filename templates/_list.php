@@ -1,6 +1,6 @@
 <?php
 
-$res = $list->getEls();
+$res = $list->getNotes();
 while ($unDone = $res->fetch(PDO::FETCH_ASSOC)) {
 	echo "<form method=\"post\" action=\"functions.php\" class=\"mb-2\">
                 <div class=\"input-group \">
@@ -32,7 +32,7 @@ while ($unDone = $res->fetch(PDO::FETCH_ASSOC)) {
 
 <?php
 
-$res2 = $list->getElsDone();
+$res2 = $list->getNotesDone();
 while ($Done = $res2->fetch(PDO::FETCH_ASSOC)) {
 	echo "<form method=\"post\" action=\"functions.php\" class=\"mb-2\">
             <div class=\"input-group \">
