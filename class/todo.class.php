@@ -16,12 +16,14 @@ class todo
 
 	public function getEls()
 	{
+		// if state = 0 the task stay active
 		$res = $this->_db->query('SELECT id , state , content FROM todo WHERE state = 0');
 		return $res;
 	}
 
 	public function getElsDone()
 	{
+		// if state = 1 the task is set to inactive
 		$res = $this->_db->query('SELECT id , state , content FROM todo WHERE state = 1');
 		return $res;
 	}
@@ -39,11 +41,28 @@ class todo
 
 	}
 
-	public function upEl($state)
+	public function upEl($id)
 	{
+		$req = $this->_db->prepare('UPDATE todo SET state = 1 WHERE id = :id ');
 
+		$req->bindValue(':id' , $id , PDO::PARAM_INT);
+
+		$req->execute();
+
+		header("location:index.php");
 	}
 
+	public function editEl($content , $id)
+	{
+		$req = $this->_db->prepare('UPDATE todo SET content = :content WHERE id = :id ');
+
+		$req->bindValue(':content', $content , PDO::PARAM_STR );
+		$req->bindValue(':id' , $id , PDO::PARAM_INT);
+
+		$req->execute();
+
+		header("location:index.php");
+	}
 
 	public function __get($name)
 	{

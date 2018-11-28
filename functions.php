@@ -10,14 +10,21 @@ $list = new todo(database::$bdd);
 
 
 //INSERT
-
 if(isset($_POST['add_state']) && isset($_POST['add_content'])){
 	$list->setNewEl($_POST);
 }
 
 //DONE
-
 if(isset($_POST['done'])){
-	$list->upEl($_POST['done']);
+
+	$id = $_POST['id'];
+	$list->upEl($id);
 }
 
+//EDIT
+if(isset($_POST['edit'])){
+
+	$id = $_POST['id'];
+	$content = $_POST['todo'];
+	$list->editEl( $content , $id);
+}

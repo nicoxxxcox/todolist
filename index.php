@@ -36,12 +36,14 @@ include_once "functions.php";
                 <div class=\"input-group \">
                 <div class=\"input-group-prepend\">
                     
+                    <input hidden type='text' name='id' value='". $unDone['id'] ."'>
                     
-                     <button class=\"btn btn-outline-primary\" name=\"done\" type=\"submit\" value='1'>ok</button>
+                     <button class=\"btn btn-outline-primary\" name=\"done\" type=\"submit\"  >ok</button>
+                   
                     
                 </div>
 
-                <input type=\"text\" class=\"form-control\" value=\"" . $unDone['content'] . "\" readonly aria-label=\"Text input with checkbox\">
+                <input type=\"text\" class=\"form-control\" name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
                 <div class=\"input-group-append\" id=\"button-addon4\">
                     <button class=\"btn btn-outline-primary\" name=\"edit\" type=\"submit\">Editer</button>
                     <button class=\"btn btn-outline-danger\" name=\"submit\" type=\"submit\">Supprimer</button>
