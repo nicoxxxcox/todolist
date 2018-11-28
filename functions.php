@@ -7,8 +7,6 @@ include_once "class/todo.class.php";
 database::pdo();
 $list = new todo(database::$bdd);
 
-
-
 //INSERT
 if(isset($_POST['add_state']) && isset($_POST['add_content'])){
 	$list->setNewEl($_POST);
