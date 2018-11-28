@@ -89,6 +89,12 @@ include_once "functions.php";
 	        }
 	        ?>
 
+            <form method="post" action="functions.php" class="mt-4">
+              <button class="btn btn-outline-danger" name="delete_alldone" type="submit">Supprimer tous les elements cochés</button>
+            </form>
+
+
+
 
 
 

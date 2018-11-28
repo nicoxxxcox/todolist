@@ -14,6 +14,11 @@ class todo
 		 $this->_db = $db ;
 	}
 
+	public function __get($name)
+	{
+		return $this->$name;
+	}
+
 	public function getEls()
 	{
 		// if state = 0 the task stay active
@@ -73,9 +78,14 @@ class todo
 		header("location:index.php");
 	}
 
-	public function __get($name)
+	public function delAllElsDone()
 	{
-		return $this->$name;
+		$req = $this->_db->prepare('DELETE FROM todo WHERE state = 1');
+		$req->execute();
+
+		header("location:index.php");
 	}
+
+
 
 }

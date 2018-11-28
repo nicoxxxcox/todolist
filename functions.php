@@ -34,3 +34,8 @@ if(isset($_POST['delete'])){
 	$id = $_POST['id'];
 	$list->delEl($id);
 }
+
+//DELETE ALL
+if(isset($_POST['delete_alldone'])){
+	$list->delAllElsDone();
+}
