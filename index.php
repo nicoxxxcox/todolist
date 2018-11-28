@@ -94,13 +94,6 @@ include_once "functions.php";
               <button class="btn btn-block btn-outline-danger" name="delete_alldone" type="submit">Supprimer tous les elements cochés</button>
             </form>
 
-
-
-
-
-
-
-
         </div>
 
 
