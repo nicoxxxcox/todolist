@@ -8,9 +8,9 @@ while ($unDone = $res->fetch(PDO::FETCH_ASSOC)) {
                         <input hidden type='text' name='id' value='" . $unDone['id'] . "'>
                          <button class=\"btn btn-list  btn-square \" name=\"done\" type=\"submit\"  ><i class=\"far fa-square \"></i></button>
                     </div>
-                    <input type=\"text\" class=\"form-control form-control-plaintext \" name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
+                    <input type=\"text\" class=\"form-control form-control-plaintext input-edit \" data-control='". $unDone['id'] . "' name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
                     <div class=\"input-group-append\" id=\"button-addon4\">
-                        <button class=\"btn btn-list btn-edit  \" name=\"edit\" type=\"submit\"><i class=\"fas fa-edit \"></i></button>
+                        <button class=\"btn btn-list btn-edit data-control='". $unDone['id'] . "' \" name=\"edit\" type=\"submit\"><i class=\"fas fa-edit \"></i></button>
                     </div>
                 </div>
             </form>";
@@ -18,7 +18,7 @@ while ($unDone = $res->fetch(PDO::FETCH_ASSOC)) {
 
             <form method="post" action="functions.php" class="mb-2 mt-4">
                 <div class="input-group ">
-                    <input type="text" autofocus class="form-control add-field" name="add_content" aria-label="Text input with checkbox" placeholder="Ajouter un element">
+                    <input type="text" autofocus class="form-control add-field" id="field" name="add_content" aria-label="Text input with checkbox" placeholder="Ajouter un element">
                     <input type="text" hidden name="add_state" value="0">
                     <div class="input-group-append" id="button-addon4">
                         <button class="btn btn-list btn-plus " type="submit"><i class="fas fa-plus"></i></button>
