@@ -8,4 +8,33 @@
     border : none;
 }
 
+.btn-list{
+    background: none;
+    color : #828282;
+}
+
+
+.btn-square:hover{
+   color : #28a745;
+    transform: scale(1.2);
+}
+
+.btn-edit:hover{
+    color : #007bff;
+    transform: scale(1.2);
+}
+
+.btn-plus, .btn-edit,.btn-square ,.btn-trash{
+    transition: transform ,  70ms;
+}
+
+.btn-plus:hover{
+    color : #28a745;
+    transform: scale(1.3);
+}
+.btn-trash:hover{
+    color : #dc3545;
+    transform: scale(1.3);
+}
+
 
