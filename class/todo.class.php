@@ -9,83 +9,124 @@ class todo
 	private $_content ;
 
 
+	/**
+	 * todo constructor.
+	 * @param $db
+	 * set db to private parameter
+	 */
 	public function __construct($db)
 	{
 		 $this->_db = $db ;
 	}
 
+	/**
+	 * @param $name
+	 * @return mixed
+	 * magic method to get privates parameters from the outside
+	 */
 	public function __get($name)
 	{
 		return $this->$name;
 	}
 
-	public function getEls()
+	/**
+	 * @return table
+	 * get note list where state = 0 (unchecked)
+	 */
+	public function getNotes()
 	{
 		// if state = 0 the task stay active
 		$res = $this->_db->query('SELECT id , state , content FROM todo WHERE state = 0');
 		return $res;
 	}
 
-	public function getElsDone()
+	/**
+	 * @return table
+	 * get note list where state = 1 (checked)
+	 */
+	public function getNotesDone()
 	{
 		// if state = 1 the task is set to inactive
 		$res = $this->_db->query('SELECT id , state , content FROM todo WHERE state = 1');
 		return $res;
 	}
 
-	public function setNewEl($content)
+	/**
+	 * @param $content
+	 * set a new note
+	 * @throws Exception
+	 */
+	public function setNewNote($content)
 	{
-		$req = $this->_db->prepare('INSERT INTO todo (state , content) VALUES (:state , :content)');
+		$req = $this->_db->prepare('INSERT INTO todo (state , content , hash , added_date ) VALUES (:state , :content , :hash , NOW())');
 
 		$req->bindValue(':state' , $content['add_state'], PDO::PARAM_INT);
 		$req->bindValue(':content' , $content['add_content'] , PDO::PARAM_STR);
+		$req->bindValue(':hash' , $this->randomHASH() , PDO::PARAM_STR);
 
 		$req->execute();
 
-		header("location:index.php");
-
 	}
 
-	public function upEl($id)
+	/**
+	 * @param $id
+	 * set note unchecked to checked
+	 */
+	public function setStateNote($id)
 	{
-		$req = $this->_db->prepare('UPDATE todo SET state = 1 WHERE id = :id ');
-
+		$req = $this->_db->prepare('UPDATE todo SET state = 1 , updated_date = NOW() WHERE id = :id ');
 		$req->bindValue(':id' , $id , PDO::PARAM_INT);
-
 		$req->execute();
-
-		header("location:index.php");
 	}
 
-	public function editEl($content , $id)
+	/**
+	 * @param $content
+	 * @param $id
+	 * edit a note
+	 */
+	public function setEditNote($content , $id)
 	{
-		$req = $this->_db->prepare('UPDATE todo SET content = :content WHERE id = :id ');
+		$req = $this->_db->prepare('UPDATE todo SET content = :content , updated_date = NOW() WHERE id = :id ');
 
 		$req->bindValue(':content', $content , PDO::PARAM_STR );
 		$req->bindValue(':id' , $id , PDO::PARAM_INT);
 		$req->execute();
-
-		header("location:index.php");
 	}
 
-	public function delEl($id)
+	/**
+	 * @param $id
+	 * delete a selected note
+	 */
+	public function setDelNote($id)
 	{
-		$req = $this->_db->prepare('DELETE FROM todo WHERE id = :id');
+		/*$req = $this->_db->prepare('DELETE FROM todo WHERE id = :id');*/
+		$req = $this->_db->prepare('UPDATE todo SET state = 2 WHERE id = :id');
 
 		$req->bindValue(':id', $id , PDO::PARAM_INT);
 		$req->execute();
 
-		header("location:index.php");
+
 	}
 
-	public function delAllElsDone()
+	/**
+	 * delete all checked notes
+	 */
+	public function setDelAllNotes()
 	{
-		$req = $this->_db->prepare('DELETE FROM todo WHERE state = 1');
-		$req->execute();
 
-		header("location:index.php");
+		$req = $this->_db->prepare('UPDATE todo SET state = 2 WHERE state = 1');
+
+		$req->execute();
 	}
 
-
+	/**
+	 * @return string
+	 * @throws Exception
+	 * create a random string to identify each elements
+	 * !! only on php7
+	 */
+	private function randomHASH(){
+		return md5(bin2hex(random_bytes(24)));
+	}
 
 }
