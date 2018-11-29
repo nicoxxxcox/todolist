@@ -57,10 +57,11 @@ class todo
 	 */
 	public function setNewNote($content)
 	{
-		$req = $this->_db->prepare('INSERT INTO todo (state , content) VALUES (:state , :content)');
+		$req = $this->_db->prepare('INSERT INTO todo (state , content , hash ) VALUES (:state , :content , :hash)');
 
 		$req->bindValue(':state' , $content['add_state'], PDO::PARAM_INT);
 		$req->bindValue(':content' , $content['add_content'] , PDO::PARAM_STR);
+		$req->bindValue(':hash' , $this->randomHASH() , PDO::PARAM_STR);
 		$req->execute();
 
 	}
@@ -113,6 +114,8 @@ class todo
 		$req->execute();
 	}
 
-
+	private function randomHASH(){
+		return md5(bin2hex(random_bytes(24)));
+	}
 
 }
