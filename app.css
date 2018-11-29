@@ -1,3 +1,11 @@
+body{
+    background: #eee;
+}
+
+.todolist{
+    background : #ffffff;
+}
+
 .done-field[readonly]{
     background: #ffffff;
     border : none;
@@ -44,5 +52,7 @@
 .cacher{
     visibility: hidden;
 }
+
+
 
 

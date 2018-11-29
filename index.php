@@ -12,7 +12,7 @@ include_once "functions.php";
 
 <div class="container">
     <div class="row ">
-        <div class="col-sm-6 mx-auto border border-light rounded shadow  mt-5 pt-5 pb-1">
+        <div class="col-sm-6 mx-auto border border-light rounded shadow  mt-5 pt-5 pb-1 todolist">
            <h3 class="mb-4 font-weight-bold text-grey">TODOLIST 📝</h3>
             <!--ICI LA LISTE-->
                 <?php require "./templates/_list.php"; ?>
