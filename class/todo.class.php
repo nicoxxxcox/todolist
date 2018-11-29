@@ -113,7 +113,7 @@ class todo
 	 */
 	public function setDelAllNotes()
 	{
-		/*$req = $this->_db->prepare('DELETE FROM todo WHERE state = 1');*/
+
 		$req = $this->_db->prepare('UPDATE todo SET state = 2 WHERE state = 1');
 
 		$req->execute();
