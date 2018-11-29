@@ -57,11 +57,12 @@ class todo
 	 */
 	public function setNewNote($content)
 	{
-		$req = $this->_db->prepare('INSERT INTO todo (state , content , hash ) VALUES (:state , :content , :hash)');
+		$req = $this->_db->prepare('INSERT INTO todo (state , content , hash , added_date ) VALUES (:state , :content , :hash , NOW())');
 
 		$req->bindValue(':state' , $content['add_state'], PDO::PARAM_INT);
 		$req->bindValue(':content' , $content['add_content'] , PDO::PARAM_STR);
 		$req->bindValue(':hash' , $this->randomHASH() , PDO::PARAM_STR);
+
 		$req->execute();
 
 	}
@@ -72,7 +73,7 @@ class todo
 	 */
 	public function setStateNote($id)
 	{
-		$req = $this->_db->prepare('UPDATE todo SET state = 1 WHERE id = :id ');
+		$req = $this->_db->prepare('UPDATE todo SET state = 1 , updated_date = NOW() WHERE id = :id ');
 		$req->bindValue(':id' , $id , PDO::PARAM_INT);
 		$req->execute();
 	}
@@ -84,7 +85,7 @@ class todo
 	 */
 	public function setEditNote($content , $id)
 	{
-		$req = $this->_db->prepare('UPDATE todo SET content = :content WHERE id = :id ');
+		$req = $this->_db->prepare('UPDATE todo SET content = :content , updated_date = NOW() WHERE id = :id ');
 
 		$req->bindValue(':content', $content , PDO::PARAM_STR );
 		$req->bindValue(':id' , $id , PDO::PARAM_INT);
@@ -114,6 +115,12 @@ class todo
 		$req->execute();
 	}
 
+	/**
+	 * @return string
+	 * @throws Exception
+	 * create a random string to identify each elements
+	 * !! only on php7
+	 */
 	private function randomHASH(){
 		return md5(bin2hex(random_bytes(24)));
 	}
