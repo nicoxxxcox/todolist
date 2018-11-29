@@ -54,6 +54,7 @@ class todo
 	/**
 	 * @param $content
 	 * set a new note
+	 * @throws Exception
 	 */
 	public function setNewNote($content)
 	{
@@ -98,7 +99,8 @@ class todo
 	 */
 	public function setDelNote($id)
 	{
-		$req = $this->_db->prepare('DELETE FROM todo WHERE id = :id');
+		/*$req = $this->_db->prepare('DELETE FROM todo WHERE id = :id');*/
+		$req = $this->_db->prepare('UPDATE todo SET state = 2 WHERE id = :id');
 
 		$req->bindValue(':id', $id , PDO::PARAM_INT);
 		$req->execute();
@@ -111,7 +113,9 @@ class todo
 	 */
 	public function setDelAllNotes()
 	{
-		$req = $this->_db->prepare('DELETE FROM todo WHERE state = 1');
+		/*$req = $this->_db->prepare('DELETE FROM todo WHERE state = 1');*/
+		$req = $this->_db->prepare('UPDATE todo SET state = 2 WHERE state = 1');
+
 		$req->execute();
 	}
 
