@@ -21,7 +21,6 @@ body{
     color : #828282;
 }
 
-
 .btn-square:hover{
    color : #28a745;
     transform: scale(1.2);
@@ -40,17 +39,21 @@ body{
     color : #28a745;
     transform: scale(1.3);
 }
+
 .btn-trash:hover{
     color : #dc3545;
     transform: scale(1.3);
 }
 
-.montrer{
-    visibility: visible;
+
+
+.input-edit + .input-group-append{
+    visibility: hidden;
 }
 
-.cacher{
-    visibility: hidden;
+.input-edit:focus + .input-group-append{
+    
+    visibility: visible;
 }
 
 
