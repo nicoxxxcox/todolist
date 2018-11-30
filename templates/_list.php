@@ -38,7 +38,7 @@ while ($Done = $res2->fetch(PDO::FETCH_ASSOC)) {
             <div class=\"input-group \">
                 <div class=\"input-group-prepend\">
                     <input hidden type='text' name='id' value='" . $unDone['id'] . "'>
-                    <button class=\"btn btn-list btn-square  \" name=\"done\" type=\"submit\"  ><i class=\"far fa-check-square \"></i></button>
+                    <button class=\"btn btn-list btn-square  \" name=\"done-check\" type=\"submit\"  ><i class=\"far fa-check-square \"></i></button>
                 </div>
                 <input hidden type='text' name='id' value='" . $Done['id'] . "'>
                 <input  type=\"text\" class=\"form-control done-field\" style=\"text-decoration: line-through\" value=\"" . $Done['content'] . "\" readonly aria-label=\"Text input with checkbox\">

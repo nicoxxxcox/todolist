@@ -58,6 +58,14 @@ body{
     visibility: visible;
 }
 
+.form-control:focus ,input[type="text"]{
+    border: none;
+    outline: none;
+    box-shadow: none;
+  
+}
+
+
 
 
 

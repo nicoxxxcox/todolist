@@ -79,6 +79,14 @@ class todo
 		$req->execute();
 	}
 
+
+	public function setStateUnNote($id)
+	{
+		$req = $this->_db->prepare('UPDATE todo SET state = 0 , updated_date = NOW() WHERE id = :id ');
+		$req->bindValue(':id' , $id , PDO::PARAM_INT);
+		$req->execute();
+	}
+
 	/**
 	 * @param $content
 	 * @param $id
@@ -104,8 +112,6 @@ class todo
 
 		$req->bindValue(':id', $id , PDO::PARAM_INT);
 		$req->execute();
-
-
 	}
 
 	/**
@@ -126,7 +132,7 @@ class todo
 	 * !! only on php7
 	 */
 	private function randomHASH(){
-		return md5(bin2hex(random_bytes(24)));
+		return md5(bin2hex(openssl_random_pseudo_bytes( 24)));
 	}
 
 }

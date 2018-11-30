@@ -21,6 +21,15 @@ if(isset($_POST['done'])){
 	header("location:index.php");
 }
 
+//UNDONE
+if(isset($_POST['done-check'])){
+
+	$id = $_POST['id'];
+	$list->setStateUnNote($id);
+	header("location:index.php");
+}
+
+
 //EDIT
 if(isset($_POST['edit'])){
 
