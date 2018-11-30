@@ -49,10 +49,12 @@ body{
 
 .input-edit + .input-group-append{
     visibility: hidden;
+    opacity: 0;
+    transition: opacity ,  400ms;
 }
 
 .input-edit:focus + .input-group-append{
-    
+    opacity: 1;
     visibility: visible;
 }
 
