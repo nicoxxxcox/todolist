@@ -13,3 +13,5 @@ echo "<h1>Hello world en plus </h1>";
 $out = ob_get_contents();
 
 echo $out;
+echo realpath("ob.php");
+
