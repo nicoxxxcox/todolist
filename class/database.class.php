@@ -6,7 +6,7 @@
  * Time: 10:18
  */
 
-include "inc/config.php";
+include_once "inc/config.php";
 
 class database
 {

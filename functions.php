@@ -3,6 +3,8 @@
 include_once "class/database.class.php";
 include_once "class/todo.class.php";
 
+
+
 // bdd
 database::pdo();
 $list = new todo(database::$bdd);

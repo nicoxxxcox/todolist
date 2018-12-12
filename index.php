@@ -10,6 +10,8 @@ include_once "functions.php";
 <?php require_once "./templates/_header.php" ?>
 <!--HEADER-->
 
+
+
 <div class="container">
     <div class="row ">
         <div class="col-lg-6 mx-auto border border-light rounded shadow  mt-5 pt-5 pb-1 todolist">
@@ -18,6 +20,15 @@ include_once "functions.php";
                 <?php require "./templates/_list.php"; ?>
         </div>
     </div>
+</div>
+
+<?php  $res = $list->getNotes(); ?>
+
+<div id="contenu" >
+    <div class="fa-3x">
+  <i class="fas fa-spinner fa-spin"></i>
+
+</div>
 </div>
 
 <!--FOOTER-->

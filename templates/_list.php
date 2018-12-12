@@ -2,13 +2,13 @@
 
 $res = $list->getNotes();
 while ($unDone = $res->fetch(PDO::FETCH_ASSOC)) {
-	echo "<form method=\"post\" action=\"functions.php\" class=\"mb-2\">
+	echo "<form method=\"post\" action=\"functions.php\" id='form-undone' class=\"mb-2\">
                 <div class=\"input-group \">
                     <div class=\"input-group-prepend\">
-                        <input hidden type='text' name='id' value='" . $unDone['id'] . "'>
+                        <input hidden type='text' name='id' id='id' value='" . $unDone['id'] . "'>
                          <button class=\"btn btn-list  btn-square \" name=\"done\" type=\"submit\"  ><i class=\"far fa-square \"></i></button>
                     </div>
-                    <input type=\"text\" class=\"form-control form-control-plaintext input-edit \" data-control='". $unDone['id'] . "' name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
+                    <input type=\"text\" id='todo' class=\"form-control form-control-plaintext input-edit \" data-control='". $unDone['id'] . "' name='todo' value=\"" . $unDone['content'] . "\"  aria-label=\"Text input with checkbox\">
                     <div class=\"input-group-append\" id=\"button-addon4\">
                         <button class=\"btn btn-list btn-edit data-control='". $unDone['id'] . "' \" name=\"edit\" type=\"submit\"><i class=\"fas fa-edit \"></i></button>
                     </div>
